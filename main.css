@@ -15,18 +15,17 @@ button{
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
+
 }
 
 #board{
     background:#4d94ff;
     align-self: center;
-    flex: 0 0 auto;
+    flex: 0 1 auto;
     height:100vmin;
     width:100vmin;
-    flex: 0.5 75vmin;
-    /* position: absolute;
-    /* top:0;bottom:0; */
-    /* left:0;right:0; */
+    top:0;bottom:0;
+    left:0;right:0;
 }
 
 .die {
@@ -49,21 +48,9 @@ button{
 }
 
 #controls{
-    /* position: relative; */
-    flex: 0 1 auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    align-content: stretch;
-}
-
-#controls div{
-    flex: 1 0 auto;
-}
-
-div.timer {
-    border-style: solid;
+    flex: 1 1 0;
+//    border-style: solid;
+//    width: 100%;
 }
 
 div.checkbox {
@@ -71,13 +58,26 @@ div.checkbox {
     
 }
 
-div.timer p{
-    border-style: solid;
+#timers {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+.timer {
+
+    flex: 1 0 auto;
+}
+
+.timer p{
+    width: 100%;
+//    border-style: solid;
     font-size: 15vmin;
-    /* width: 50%; */
     text-align: right;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0;
+    margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
 }
