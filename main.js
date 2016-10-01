@@ -12,6 +12,6 @@ function rollDice() {
 }
 
 $( document ).ready( function() {
-  $( "#roll" ).onclick=rollDice;
+  $( "#roll" ).click(rollDice);
   rollDice();  
 });
