@@ -63,7 +63,6 @@ function rollDice() {
     var side = randSide(die);
     $( this ).text(side);
     dice.splice(dieNumber, 1);
-    console.log(dice);
   });
 }
 
