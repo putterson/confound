@@ -40,6 +40,31 @@ var diceSets = {
 
 var currentDiceSet = "classic";
 
+var interval_handles = [];
+
+function register_interval(callback, interval) {
+    var handle = setInterval(callback, interval);
+    interval_handles.push(handle);
+    return handle;
+}
+
+function clear_interval(handle) {
+    var idx = interval_handles.indexOf(handle);
+    if ( idx === -1 ) {
+	throw "Interval handle " + handle + " is not registered."
+    }
+    clearInterval(handle);
+    interval_handles.splice(idx,1);
+}
+
+function clear_all_intervals() {
+    while ( interval_handles.length > 0 ) {
+	var handle = interval_handles[0];
+	clearInterval(handle);
+	interval_handles.splice(0,1);
+    }
+}
+
 function randSide(die) {
   var length = die.length
   var side = randInt(length);
@@ -72,12 +97,13 @@ function start_interval(seconds, update_callback) {
     var update = function() {
 	console.log("Timer remaining: " + remaining)
 	if ( remaining <= 0 ) {
-	    clearInterval(interval);
+	    clear_interval(interval);
 	}
 	update_callback(remaining);
 	remaining--;
     };
-    interval = setInterval(update, 1000);
+    update(remaining);
+    interval = register_interval(update, 1000);
 }
 
 /* Seconds to minutes and seconds */
