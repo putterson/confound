@@ -85,7 +85,7 @@ function s_to_m_s (seconds) {
     var min = Math.floor(seconds/60);
     var sec = seconds % 60;
     if ( min > 0 ) {
-	return min + ":" + sec;
+	return min + ":" + ("00" + sec).slice(-2);
     } else {
 	return sec;
     }
@@ -113,7 +113,7 @@ function start(stage) {
 	var countdown_update = function(rem){
 	    $( "#countdown_value" ).text(s_to_m_s(rem));
 	    if ( rem <= 0 ) {
-		$( "#countdown_value" ).text(s_to_m_s(countdown_value));
+		$( "#countdown_value" ).text(countdown_value);
 		start(stage+1);
 	    }
 	};
@@ -124,12 +124,12 @@ function start(stage) {
     } else if (stage === 2) {
 	if(!timer){ return start(stage+1); }
 	var timer_value = $("#timer_value").text();
-	console.log("Timer value: " + countdown_value);
+	console.log("Timer value: " + timer_value);
 	var seconds = m_s_to_s(timer_value)
 	var timer_update = function(rem){
 	    $( "#timer_value" ).text(s_to_m_s(rem));
 	    if ( rem <= 0 ) {
-		$( "#timer_value" ).text(s_to_m_s(timer_value));
+		$( "#timer_value" ).text(timer_value);
 		beep();
 		setTimeout(beep, 150);
 		setTimeout(beep, 300);
