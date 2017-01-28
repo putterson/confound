@@ -18,7 +18,7 @@ var diceSets = {
     "ELPSTU",
     "GILRUW"
   ],
-  new: [
+  modern: [
     "AAEEGN",
     "ABBJOO",
     "ACHOPS",

@@ -19,7 +19,7 @@ button{
 }
 
 #board{
-    background:#4d94ff;
+    background:#001ea8;
     align-self: center;
     flex: 0 1 auto;
     height:100vmin;
@@ -34,17 +34,22 @@ button{
     width: 24%;
     padding-bottom : 24%; /* = width for a 1:1 aspect ratio */
     margin:0.5%;
-    background-color:#EEEEEE;
+    background: radial-gradient(circle at 40% 30%, #FFFFEE, #BBBBAA);
     overflow:hidden;
+    border-radius: 7%;
 }
 
 .die-content {
     position:absolute;
     height:90%; /* = 100% - 2*5% padding */
     width:90%; /* = 100% - 2*5% padding */
-    padding: 5%;
-    font-size: 18vmin;
+    margin: 5%;
+    font-size: 14vmin;
     text-align:center;
+    line-height: 22vmin;
+    background-color:#EEEEDD;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 #controls{
