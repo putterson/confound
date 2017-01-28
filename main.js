@@ -45,6 +45,8 @@ var interval_handles = [];
 function register_interval(callback, interval) {
     var handle = setInterval(callback, interval);
     interval_handles.push(handle);
+    console.log("After register: ");
+    console.log(interval_handles);
     return handle;
 }
 
@@ -55,6 +57,8 @@ function clear_interval(handle) {
     }
     clearInterval(handle);
     interval_handles.splice(idx,1);
+    console.log("After clear: ");
+    console.log(interval_handles);
 }
 
 function clear_all_intervals() {
@@ -63,6 +67,13 @@ function clear_all_intervals() {
 	clearInterval(handle);
 	interval_handles.splice(0,1);
     }
+    console.log("After clear all: ");
+    console.log(interval_handles);
+}
+
+/* Return the number of registered handlers */
+function num_handlers() {
+    return interval_handles.length;
 }
 
 function randSide(die) {
@@ -128,42 +139,74 @@ function m_s_to_s (min_sec) {
     }
 }
 
-function start(stage) {
+var state = {
+    initial_timer : "20",
+    initial_countdown : "3",
+};
+
+function start(state, stage) {
+    console.log("start("+stage+")");
+
     var countdown = document.getElementById("countdown").checked;
     var timer = document.getElementById("timer").checked;
+    var countdown_value = state.initial_countdown;
+    var timer_value = state.initial_timer;
+    
     if (stage === 0) {
-	if(!countdown){ return start(stage+1); }
-	var countdown_value = $("#countdown_value").text();
-	console.log("Countdown value: " + countdown_value);
+	if(!countdown){ return start(state, stage+1); }
 	var seconds = m_s_to_s(countdown_value)
 	var countdown_update = function(rem){
 	    $( "#countdown_value" ).text(s_to_m_s(rem));
 	    if ( rem <= 0 ) {
-		$( "#countdown_value" ).text(countdown_value);
-		start(stage+1);
+		$( "#countdown_value" ).text(state.initial_countdown);
+		start(state, stage+1);
 	    }
 	};
 	start_interval(seconds, countdown_update);
     } else if (stage === 1) {
 	rollDice();
-	start(stage+1);
+	return start(state, stage+1);
     } else if (stage === 2) {
-	if(!timer){ return start(stage+1); }
-	var timer_value = $("#timer_value").text();
+	if(!timer){ return start(state, stage+1); }
+
 	console.log("Timer value: " + timer_value);
 	var seconds = m_s_to_s(timer_value)
 	var timer_update = function(rem){
 	    $( "#timer_value" ).text(s_to_m_s(rem));
 	    if ( rem <= 0 ) {
-		$( "#timer_value" ).text(timer_value);
+		$( "#timer_value" ).text(state.initial_timer);
 		beep();
 		setTimeout(beep, 150);
 		setTimeout(beep, 300);
-		start(stage+1);
+		start(state, stage+1);
 	    }
 	};
 	start_interval(seconds, timer_update);
     }
+
+    update(state);
+}
+
+function update(state){
+    if ( num_handlers() > 0 ) {
+	$( "#roll" ).text("Stop");
+	$( "#roll" ).off("click");
+	$( "#roll" ).click(function(){ stop(state) });
+    } else {
+	$( "#roll" ).text("Roll");
+	$( "#roll" ).off("click");
+	$( "#roll" ).click(function(){ start(state, 0); });
+    }	
+}
+
+function stop(state) {
+    console.log("stop");
+    clear_all_intervals();
+    $( "#timer_value" ).text(state.initial_timer);
+    $( "#countdown_value" ).text(state.initial_countdown);
+    $( "#roll" ).off("click");
+    $( "#roll" ).click(function(){ start(state, 0); });
+    $( "#roll" ).text("Roll");
 }
 
 function beep() {
@@ -172,6 +215,8 @@ function beep() {
 }
 
 $( document ).ready( function() {
-    $( "#roll" ).click(function(){start(0)});
+    $( "#timer_value" ).text(state.initial_timer);
+    $( "#countdown_value" ).text(state.initial_countdown);
+    $( "#roll" ).click(function(){start(state, 0)});
     rollDice();
 });
