@@ -140,7 +140,7 @@ function m_s_to_s (min_sec) {
 }
 
 var state = {
-    initial_timer : "20",
+    initial_timer : "3:00",
     initial_countdown : "3",
 };
 
