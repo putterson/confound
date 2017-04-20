@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ConfoundApp from './components/ConfoundApp.jsx';
+import ConfoundApp from './containers/ConfoundApp.jsx';
 global.jQuery = global.$ = require('jquery');
 
 console.log("Confound entry point.")
