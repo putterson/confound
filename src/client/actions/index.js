@@ -41,6 +41,19 @@ export const timerRunning = (running) => {
   }
 }
 
+export const editTimer = (id, editing) => {
+  return function (dispatch, getState) {
+    if(!getState().timers.running){
+      dispatch( {
+        type: 'TIMER_EDITING',
+        timer: id,
+        editing: editing
+      }
+      )
+    }
+  }
+}
+
 /* Game phases */
 export const phaseInit = () => {
   return function (dispatch, getState) {

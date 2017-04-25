@@ -1,7 +1,7 @@
 const getInitialTimersState = () => ({
     timers: [
-        {name: 'Timer', phase: 'TIMER', time: '3:00', remaining: '3:00', enabled: false},
-        {name: 'Countdown', phase: 'COUNTDOWN', time: '10', remaining: '10', enabled: false}
+        {name: 'Timer', phase: 'TIMER', time: '3:00', remaining: '3:00', enabled: false, editing: false},
+        {name: 'Countdown', phase: 'COUNTDOWN', time: '10', remaining: '10', enabled: false, editing: false}
     ],
     running: false
 })
@@ -27,6 +27,8 @@ const timers = (state = getInitialTimersState(), action) => {
             return updateTimer(state, action.timer, (timer) => ({ enabled: !timer.enabled }))
         case 'TIMER_RUNNING':
             return Object.assign({}, state, {running: action.running})
+        case 'TIMER_EDITING':
+            return updateTimer(state, action.timer, (timer) => ({ editing: action.editing }))
         default:
             return state
     }
