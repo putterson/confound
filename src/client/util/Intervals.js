@@ -12,8 +12,8 @@ class Intervals {
     register_interval(callback, interval) {
         var handle = setInterval(callback, interval);
         interval_handles.push(handle);
-        console.log("After register: ");
-        console.log(interval_handles);
+        // console.log("After register: ");
+        // console.log(interval_handles);
         return handle;
     }
 
@@ -24,8 +24,8 @@ class Intervals {
         }
         clearInterval(handle);
         interval_handles.splice(idx,1);
-        console.log("After clear: ");
-        console.log(interval_handles);
+        // console.log("After clear: ");
+        // console.log(interval_handles);
     }
 
     clear_all_intervals() {
@@ -34,8 +34,8 @@ class Intervals {
         clearInterval(handle);
         interval_handles.splice(0,1);
         }
-        console.log("After clear all: ");
-        console.log(interval_handles);
+        // console.log("After clear all: ");
+        // console.log(interval_handles);
     }
 
 
@@ -43,7 +43,7 @@ class Intervals {
         var remaining = seconds;
         var interval = null;
         var update = () => {
-            console.log("Timer remaining: " + remaining)
+            // console.log("Timer remaining: " + remaining)
             if ( remaining <= 0 ) {
                 this.clear_interval(interval);
             }

@@ -6,7 +6,6 @@ import thunk from 'redux-thunk';
 import ConfoundApp from './components/ConfoundApp.jsx';
 import confoundApp from './reducers'
 
-console.log("Confound entry point.")
 require("./main.css")
 
 let store = createStore(
