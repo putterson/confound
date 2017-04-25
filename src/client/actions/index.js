@@ -55,6 +55,8 @@ export const phaseCountdown = () => {
             }
         };
         intervals.start_interval(seconds, countdown_update);
+    } else {
+      dispatch(phaseRoll())
     }
   }
 }
@@ -80,6 +82,8 @@ export const phaseTimer = () => {
             }
         };
         intervals.start_interval(seconds, timer_update);
+    } else {
+      dispatch(phaseEnd())
     }
   }
 }
