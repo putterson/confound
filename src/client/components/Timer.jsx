@@ -2,10 +2,12 @@ import React from 'react';
 
 export default class Timer extends React.Component {
     render () {
+        let timer_class = "timer " + (this.props.enabled ? "timer-enabled" : "timer-disabled")
+
         return (
-            <div className="timer">
-                <div className="checkbox"><input type="checkbox" id={this.props.identifier}></input>{this.props.name}</div>
-                <p id={this.props.valueid}></p>
+            <div className={timer_class} onClick={this.props.toggleFunc}>
+                <div className="checkbox">{this.props.name}</div>
+                <p>{this.props.value}</p>
 	        </div>
         )
     }

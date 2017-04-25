@@ -78,11 +78,14 @@ div.checkbox {
 
 .timer p{
     width: 100%;
-//    border-style: solid;
     font-size: 15vmin;
     text-align: right;
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.timer-disabled p{
+    color: lightgrey;
 }
