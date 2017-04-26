@@ -13,6 +13,7 @@ export default class Timer extends React.Component {
                     defaultValue={this.props.value}
                     onKeyDown={this.props.onKeyDownHandler}
                     onBlur={this.props.onKeyDownHandler}
+                    onFocus={(e) => e.target.select()}
                     />
         } else {
             return <p onClick={this.props.editFunc}>{this.props.value}</p>
