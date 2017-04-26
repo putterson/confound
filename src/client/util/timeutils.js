@@ -19,3 +19,23 @@ export function m_s_to_s (min_sec) {
 	return parseInt(components[0]);
     }
 }
+
+export function parseTime(input) {
+    var components = input.toString().split(":")
+    let multipliers = [1, 60, 3600]
+    if(components.length > 3 || components.length === 0){
+        return undefined
+    } else {
+        //TODO(putterson): parseInt is very lax in what it will accept
+        let ints= components.map((x, i) => parseInt(x, 10))
+        if(ints.filter(integer => integer === NaN).length > 0){
+            return undefined
+        }
+
+        let seconds = components.reverse().map((x, i) => x * multipliers[i])
+        let sum = seconds.reduce((n, m) => n + m, 0)
+        if(sum >= 0){
+            return sum
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { start_interval, m_s_to_s, s_to_m_s } from '../util/timeutils.js'
+import { start_interval, parseTime, s_to_m_s } from '../util/timeutils.js'
 import Intervals from '../util/Intervals.js'
 import beep from '../util/Beeper.js'
 
@@ -42,6 +42,14 @@ export const timerRunning = (running) => {
   }
 }
 
+export const timerEditUpdate = (id, input) => {
+  return {
+    type: 'TIMER_EDIT_UPDATE',
+    timer: id,
+    input: input
+  }
+}
+
 export const editTimer = (id, editing) => {
   return function (dispatch, getState) {
     if(!getState().timers.running){
@@ -67,7 +75,7 @@ export const phaseCountdown = () => {
     var countdownTimer = getState().timers.timers[1]
     if (countdownTimer.enabled){
       dispatch(timerRunning(true))
-      var seconds = m_s_to_s(countdownTimer.time)
+      var seconds = parseTime(countdownTimer.time)
       var countdown_update = function(rem){
           dispatch(timerTick(1, s_to_m_s(rem)));
           if ( rem <= 0 ) {
@@ -94,7 +102,7 @@ export const phaseTimer = () => {
     var timerTimer = getState().timers.timers[0]
     if (timerTimer.enabled){
       dispatch(timerRunning(true))
-      var seconds = m_s_to_s(timerTimer.time)
+      var seconds = parseTime(timerTimer.time)
       var timer_update = function(rem){
           dispatch(timerTick(0, s_to_m_s(rem)));
           if ( rem <= 0 ) {

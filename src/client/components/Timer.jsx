@@ -5,14 +5,15 @@ export default class Timer extends React.Component {
 
     displayOrEditTimer() {
         if (this.props.editing) {
+            let clazz = (this.props.valid ? "valid" : "invalid") 
             return <input
                     autoFocus
                     type="text"
-                    className="form-control"
+                    className={clazz}
                     name={this.props.name}
                     defaultValue={this.props.value}
-                    onKeyDown={this.props.onKeyDownHandler}
-                    onBlur={this.props.onKeyDownHandler}
+                    onKeyUp={this.props.onKeyHandler}
+                    onBlur={this.props.onKeyHandler}
                     onFocus={(e) => e.target.select()}
                     />
         } else {

@@ -50,8 +50,8 @@ class Intervals {
             update_callback(remaining);
             remaining--;
         };
-        update(remaining);
         interval = this.register_interval(update, 1000);
+        update(remaining);
     }
 
     /* Return the number of registered handlers */

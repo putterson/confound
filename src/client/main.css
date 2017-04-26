@@ -70,7 +70,7 @@ div.checkbox {
 }
 
 .timer {
-
+    overflow: hidden;
     flex: 1 0 auto;
 }
 
@@ -83,6 +83,18 @@ div.checkbox {
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.timer input {
+    border-width: 1vmin;
+}
+
+.valid {
+    border-color: greenyellow;
+}
+
+.invalid {
+    border-color: red;
 }
 
 .timer-disabled p{
