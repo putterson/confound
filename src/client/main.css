@@ -54,8 +54,6 @@ button{
 
 #controls{
     flex: 1 1 0;
-//    border-style: solid;
-//    width: 100%;
 }
 
 div.checkbox {
@@ -76,13 +74,17 @@ div.checkbox {
     flex: 1 0 auto;
 }
 
-.timer p{
+.timer p, input {
     width: 100%;
-//    border-style: solid;
+    font-family: serif;
     font-size: 15vmin;
     text-align: right;
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.timer-disabled p{
+    color: lightgrey;
 }

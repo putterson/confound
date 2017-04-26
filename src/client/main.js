@@ -93,13 +93,13 @@ function randInt(max){
 function rollDice() {
   var diceSet = diceSets[currentDiceSet];
   var dice = diceSet.slice();
-  $( ".die-content" ).each( function(idx) {
-    var dieNumber = randInt(dice.length);
-    var die = dice[dieNumber];
-    var side = randSide(die);
-    $( this ).text(side);
-    dice.splice(dieNumber, 1);
-  });
+//   $( ".die-content" ).each( function(idx) {
+//     var dieNumber = randInt(dice.length);
+//     var die = dice[dieNumber];
+//     var side = randSide(die);
+//     $( this ).text(side);
+//     dice.splice(dieNumber, 1);
+//   });
 }
 
 function start_interval(seconds, update_callback) {
