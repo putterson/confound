@@ -1,5 +1,6 @@
 import { start_interval, m_s_to_s, s_to_m_s } from '../util/timeutils.js'
 import Intervals from '../util/Intervals.js'
+import beep from '../util/Beeper.js'
 
 const intervals = new Intervals()
 
@@ -98,6 +99,7 @@ export const phaseTimer = () => {
           dispatch(timerTick(0, s_to_m_s(rem)));
           if ( rem <= 0 ) {
             dispatch(timerTick(0, timerTimer.time))
+            beep()
             dispatch(phaseEnd())
           }
       };
